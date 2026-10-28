@@ -1,0 +1,17 @@
+# dependencies and build output
+node_modules
+.next
+out
+.vercel
+*.log
+*.tsbuildinfo
+next-env.d.ts
+
+# Phase 1 source audit: 160 MB of crawled pages, screenshots and original assets.
+# Kept locally as the source for scripts/prepare-images.py; not part of the site.
+docs/source-audit/
+
+# local environment and OS files
+.env*
+.DS_Store
+Thumbs.db

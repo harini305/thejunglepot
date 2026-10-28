@@ -1,0 +1,235 @@
+.layout {
+  display: grid;
+  gap: var(--gap-lg);
+}
+
+@media (min-width: 960px) {
+  .layout {
+    grid-template-columns: 4fr 8fr;
+    align-items: start;
+  }
+
+  .aside {
+    position: sticky;
+    top: calc(var(--header-h) + 32px);
+  }
+}
+
+.asideInner {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.groupNav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+}
+
+.groupNav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 40px;
+  padding: 0 0.9rem;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  font-size: var(--fs-small);
+  text-decoration: none;
+  transition:
+    border-color 0.2s,
+    background-color 0.2s;
+}
+
+.groupNav a:hover {
+  border-color: var(--forest);
+  background: rgba(66, 79, 69, 0.06);
+}
+
+.groupNav span {
+  color: var(--ink-soft);
+}
+
+.asideImage {
+  display: none;
+}
+
+@media (min-width: 960px) {
+  .groupNav {
+    display: grid;
+    gap: 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .groupNav a {
+    display: flex;
+    justify-content: space-between;
+    min-height: 48px;
+    padding: 0;
+    border: 0;
+    border-bottom: 1px solid var(--rule);
+    border-radius: 0;
+  }
+
+  .groupNav a:hover {
+    background: none;
+    color: var(--bronze-ink);
+  }
+
+  .asideImage {
+    display: block;
+    width: min(100%, 280px);
+    margin-top: 0.75rem;
+  }
+}
+
+/* Price list */
+.menu {
+  display: grid;
+  gap: clamp(48px, 6vw, 72px);
+}
+
+.groupTitle {
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--ink);
+  font-size: var(--fs-h2);
+}
+
+.items {
+  list-style: none;
+}
+
+.item {
+  padding: 1.35rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.itemHead {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.itemHead h4 {
+  font-size: var(--fs-h3);
+  line-height: 1.2;
+}
+
+.leader {
+  flex: 1;
+  min-width: 1.5rem;
+  border-bottom: 1px dotted rgba(23, 29, 24, 0.35);
+  transform: translateY(-0.3em);
+}
+
+.price {
+  font-weight: 500;
+  font-size: 1.0625rem;
+  white-space: nowrap;
+}
+
+.itemBody {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.35rem;
+  margin-top: 0.5rem;
+}
+
+.duration {
+  font-size: var(--fs-small);
+  font-weight: 500;
+  color: var(--bronze-ink);
+}
+
+.desc {
+  margin: 0;
+  max-width: 40rem;
+  color: var(--ink-soft);
+  font-size: 0.975rem;
+}
+
+.book {
+  justify-self: start;
+  margin-top: 0.35rem;
+  font-size: var(--fs-small);
+  font-weight: 500;
+  color: var(--forest);
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+}
+
+.book:hover {
+  color: var(--bronze-ink);
+}
+
+@media (min-width: 640px) {
+  .itemBody {
+    grid-template-columns: 7rem 1fr;
+    column-gap: 1.5rem;
+  }
+
+  .duration {
+    grid-row: 1 / span 2;
+    padding-top: 0.1rem;
+  }
+
+  .desc,
+  .book {
+    grid-column: 2;
+  }
+}
+
+@media (max-width: 400px) {
+  .itemHead {
+    flex-wrap: wrap;
+    gap: 0.15rem 0.75rem;
+  }
+
+  .leader {
+    display: none;
+  }
+
+  .itemHead h4 {
+    flex: 1 1 100%;
+  }
+}
+
+/* Sauna & jacuzzi */
+.heat {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr 1fr;
+}
+
+.heatText {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 1.25rem;
+  margin-bottom: var(--gap);
+}
+
+@media (min-width: 860px) {
+  .heat {
+    grid-template-columns: 5fr 3.5fr 3.5fr;
+    gap: var(--gap);
+    align-items: center;
+  }
+
+  .heatText {
+    grid-column: 1;
+    margin-bottom: 0;
+    padding-right: var(--gap);
+    align-self: center;
+  }
+
+
+}
+
+/* Image strip */
+.stripGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(10px, 3vw, 48px);
+  align-items: center;
+}

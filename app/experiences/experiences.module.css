@@ -1,0 +1,254 @@
+/* Yoga: wide pebble with a small arch overlapping its corner */
+.yoga {
+  display: grid;
+  gap: var(--gap-lg);
+  align-items: center;
+}
+
+.yogaMedia {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: clamp(12px, 2vw, 24px);
+  align-items: start;
+}
+
+@media (min-width: 960px) {
+  .yoga {
+    grid-template-columns: 7fr 5fr;
+  }
+}
+
+/* Sacred sites: two equal columns */
+.sites {
+  display: grid;
+  gap: clamp(48px, 6vw, 72px) var(--gap-lg);
+}
+
+@media (min-width: 860px) {
+  .sites {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.site {
+  display: grid;
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+  align-content: start;
+}
+
+/* Culture */
+.culture {
+  display: grid;
+  gap: var(--gap-lg);
+}
+
+.cultureHead {
+  display: grid;
+  gap: 1.25rem;
+  align-content: start;
+}
+
+.cultureImage {
+  width: min(100%, 360px);
+  margin-top: 1rem;
+}
+
+@media (min-width: 960px) {
+  .culture {
+    grid-template-columns: 5fr 7fr;
+  }
+}
+
+.offerings {
+  display: grid;
+  gap: 0 var(--gap);
+  align-content: start;
+  border-top: 1px solid var(--terracotta);
+}
+
+@media (min-width: 600px) {
+  .offerings {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.offering {
+  display: grid;
+  gap: 0.6rem;
+  align-content: start;
+  padding: clamp(1.5rem, 3vw, 2.25rem) 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.cultureNote {
+  grid-column: 1 / -1;
+  padding-top: 1.5rem;
+  font-size: var(--fs-small);
+  color: var(--ink-soft);
+}
+
+/* Cooking + trekking side by side */
+.pair {
+  display: grid;
+  gap: clamp(64px, 8vw, 96px) var(--gap-lg);
+}
+
+@media (min-width: 860px) {
+  .pair {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.pairItem {
+  display: grid;
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+  align-content: start;
+}
+
+/* Camping */
+.camping {
+  display: grid;
+  gap: var(--gap-lg);
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .camping {
+    grid-template-columns: 5fr 7fr;
+  }
+}
+
+.campingLead {
+  margin: 1rem 0 1.5rem;
+  max-width: 36rem;
+}
+
+.campingLists {
+  display: grid;
+  gap: 1.5rem var(--gap);
+}
+
+.campingLists h3 {
+  margin-bottom: 0.5rem;
+}
+
+@media (min-width: 560px) {
+  .campingLists {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Weekly schedule: seven day columns on wide screens, stacked days on small ones */
+.scheduleHead {
+  display: grid;
+  gap: 1.25rem;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+@media (min-width: 860px) {
+  .scheduleHead {
+    grid-template-columns: 5fr 7fr;
+    gap: var(--gap-lg);
+    align-items: end;
+  }
+}
+
+.week {
+  display: grid;
+  gap: 0 var(--gap);
+}
+
+@media (min-width: 600px) {
+  .week {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1200px) {
+  .week {
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0;
+    border-left: 1px solid var(--rule-dark);
+  }
+
+  .day {
+    border-right: 1px solid var(--rule-dark);
+    padding: 0 14px;
+  }
+}
+
+.day {
+  padding-bottom: 1.5rem;
+}
+
+.dayName {
+  padding: 0.5rem 0 0.75rem;
+  border-bottom: 1px solid var(--terracotta);
+  font-size: 1.5rem;
+}
+
+.day ul {
+  list-style: none;
+}
+
+.session {
+  display: grid;
+  grid-template-columns: 7.5rem 1fr;
+  gap: 0 0.75rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--rule-dark);
+}
+
+.time {
+  grid-row: 1 / span 2;
+  font-size: var(--fs-small);
+  color: var(--on-dark-soft);
+  font-variant-numeric: tabular-nums;
+}
+
+.sessionName {
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.sessionPrice {
+  font-size: var(--fs-small);
+  color: var(--bronze);
+}
+
+@media (min-width: 1200px) {
+  .session {
+    grid-template-columns: 1fr;
+    min-height: 7.25rem;
+    align-content: start;
+  }
+
+  .time {
+    grid-row: auto;
+    font-size: 0.8125rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .session:last-child {
+    border-bottom: 0;
+  }
+}
+
+.scheduleActions {
+  margin-top: clamp(2rem, 4vw, 3rem);
+}
+
+/* the small arch takes exactly the height of the main yoga photo */
+.yogaMedia {
+  align-items: stretch;
+}
+
+.yogaSmall,
+.yogaSmall :global(.frame) {
+  height: 100%;
+}
+
+.yogaSmall :global(.shape) {
+  height: 100%;
+  aspect-ratio: auto !important;
+}

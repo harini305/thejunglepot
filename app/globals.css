@@ -1,0 +1,795 @@
+/* ------------------------------------------------------------------
+   The Jungle Pots — design tokens and shared layout rules
+   Theme: dark mystic jungle. Deep forest and cream sections joined by
+   curved edges, terracotta actions and gold hairlines.
+   ------------------------------------------------------------------ */
+
+:root {
+  --deep: #121f1a;
+  --deep-2: #1a2b24;
+  --forest: #121f1a;
+  --terracotta: #c98a6d;
+  --terra-ink: #9d5d3f; /* terracotta dark enough for small text on cream */
+  --gold: #d4af77;
+  --bronze: #d4af77; /* accent on dark backgrounds */
+  --bronze-ink: #9d5d3f; /* accent on light backgrounds */
+  --taupe: #77705e;
+
+  --paper: #f5efe6;
+  --paper-2: #ede4d6;
+  --ink: #121f1a;
+  --ink-soft: #424b45;
+  --on-dark: #f5efe6;
+  --on-dark-soft: rgba(245, 239, 230, 0.8);
+  --rule: rgba(212, 175, 119, 0.55);
+  --rule-dark: rgba(212, 175, 119, 0.3);
+
+  /* themed sections */
+  --sec-gap: 32px;
+  --curve-h: clamp(24px, 3.5vw, 52px);
+  --curve-cream: var(--paper);
+  --curve-deep: var(--deep);
+  --curve-footer: var(--deep);
+
+  /* single brand typeface (matches the logo wordmark) for headings and text */
+  --font-brand: var(--font-philosopher), "Philosopher", "Trebuchet MS", sans-serif;
+  --font-serif: var(--font-brand);
+  --font-sans: var(--font-brand);
+
+  /* layout */
+  --max: 1240px;
+  --max-narrow: 760px;
+  --gutter: clamp(16px, 4vw, 48px);
+  --gap: clamp(20px, 3vw, 40px);
+  --gap-lg: clamp(32px, 6vw, 96px);
+  --section: clamp(64px, 9vw, 128px);
+  --section-tight: clamp(48px, 6vw, 80px);
+  --header-h: 80px;
+  --radius: 2px;
+
+  /* type scale */
+  --fs-display: clamp(2.6rem, 1.4rem + 5.2vw, 6rem);
+  --fs-h1: clamp(2.4rem, 1.5rem + 3.8vw, 4.75rem);
+  --fs-h2: clamp(2rem, 1.35rem + 2.6vw, 3.4rem);
+  --fs-h3: clamp(1.45rem, 1.2rem + 0.9vw, 1.9rem);
+  --fs-lead: clamp(1.06rem, 1rem + 0.35vw, 1.25rem);
+  --fs-body: clamp(1rem, 0.97rem + 0.12vw, 1.0625rem);
+  --fs-small: 0.9rem;
+  --fs-label: 0.8125rem;
+
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --header-h: 96px;
+  }
+}
+
+/* ---------- base ---------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--header-h) + 24px);
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  font-weight: 400;
+  line-height: 1.65;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-weight: 500;
+  line-height: 1.06;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: var(--fs-h1);
+}
+
+h2 {
+  font-size: var(--fs-h2);
+}
+
+h3 {
+  font-size: var(--fs-h3);
+  line-height: 1.15;
+}
+
+p {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+p + p {
+  margin-top: 1em;
+}
+
+a {
+  color: inherit;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--bronze);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--bronze);
+  color: var(--deep);
+}
+
+.skip-link {
+  position: absolute;
+  left: 12px;
+  top: -60px;
+  z-index: 100;
+  padding: 10px 16px;
+  background: var(--bronze);
+  color: var(--deep);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 12px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---------- layout primitives ---------- */
+
+.container {
+  width: min(100% - 2 * var(--gutter), var(--max));
+  margin-inline: auto;
+}
+
+.container-narrow {
+  width: min(100% - 2 * var(--gutter), var(--max-narrow));
+  margin-inline: auto;
+}
+
+.section {
+  padding-block: var(--section);
+}
+
+.section-tight {
+  padding-block: var(--section-tight);
+}
+
+.surface-dark {
+  background: var(--forest);
+  color: var(--on-dark);
+}
+
+.surface-deep {
+  background: var(--deep);
+  color: var(--on-dark);
+}
+
+.surface-sand {
+  background: var(--paper-2);
+}
+
+.lead {
+  font-size: var(--fs-lead);
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+.surface-dark .lead,
+.surface-deep .lead {
+  color: var(--on-dark-soft);
+}
+
+.muted {
+  color: var(--ink-soft);
+}
+
+.surface-dark .muted,
+.surface-deep .muted {
+  color: var(--on-dark-soft);
+}
+
+.stack > * + * {
+  margin-top: 1.25rem;
+}
+
+.stack-lg > * + * {
+  margin-top: clamp(1.5rem, 2.5vw, 2.25rem);
+}
+
+/* Section heading with an optional supporting paragraph */
+.section-head {
+  display: grid;
+  gap: 1.25rem;
+  margin-bottom: clamp(2rem, 4vw, 3.5rem);
+  max-width: 46rem;
+}
+
+/* ---------- media ---------- */
+
+.media {
+  position: relative;
+  overflow: hidden;
+  background: var(--paper-2);
+}
+
+.surface-dark .media,
+.surface-deep .media {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ratio-3x2 {
+  aspect-ratio: 3 / 2;
+}
+
+.ratio-4x5 {
+  aspect-ratio: 4 / 5;
+}
+
+.ratio-1x1 {
+  aspect-ratio: 1 / 1;
+}
+
+.ratio-16x9 {
+  aspect-ratio: 16 / 9;
+}
+
+.ratio-5x4 {
+  aspect-ratio: 5 / 4;
+}
+
+/* ---------- buttons & links ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6em;
+  min-height: 48px;
+  padding: 0 1.6rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color 0.25s var(--ease),
+    color 0.25s var(--ease),
+    border-color 0.25s var(--ease);
+}
+
+.btn-primary {
+  background: var(--terracotta);
+  color: var(--deep);
+}
+
+.btn-primary:hover {
+  background: #d69c80;
+}
+
+.btn-outline {
+  border-color: currentColor;
+  color: var(--ink);
+  background: transparent;
+}
+
+.btn-outline:hover {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+
+.surface-dark .btn-outline,
+.surface-deep .btn-outline,
+.on-image .btn-outline {
+  color: var(--on-dark);
+}
+
+.surface-dark .btn-outline:hover,
+.surface-deep .btn-outline:hover,
+.on-image .btn-outline:hover {
+  background: var(--on-dark);
+  color: var(--deep);
+  border-color: var(--on-dark);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-weight: 500;
+  color: var(--bronze-ink);
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 100% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  padding-bottom: 2px;
+  transition: background-size 0.3s var(--ease);
+}
+
+.text-link:hover {
+  background-size: 35% 1px;
+}
+
+.surface-dark .text-link,
+.surface-deep .text-link {
+  color: var(--bronze);
+}
+
+.arrow {
+  width: 1em;
+  height: 1em;
+  flex: none;
+  transition: transform 0.3s var(--ease);
+}
+
+a:hover > .arrow {
+  transform: translateX(3px);
+}
+
+/* ---------- lists ---------- */
+
+.ruled-list {
+  list-style: none;
+  border-top: 1px solid var(--rule);
+}
+
+.ruled-list li {
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.surface-dark .ruled-list,
+.surface-dark .ruled-list li,
+.surface-deep .ruled-list,
+.surface-deep .ruled-list li {
+  border-color: var(--rule-dark);
+}
+
+.fact-list {
+  display: grid;
+}
+
+:where(.fact-list) {
+  margin: 0;
+}
+
+.fact-list > div {
+  display: grid;
+  grid-template-columns: minmax(7.5rem, 38%) 1fr;
+  gap: 1rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.fact-list > div:first-child {
+  border-top: 1px solid var(--rule);
+}
+
+.fact-list dt {
+  color: var(--ink-soft);
+}
+
+.fact-list dd {
+  margin: 0;
+  font-weight: 500;
+}
+
+.surface-dark .fact-list > div,
+.surface-deep .fact-list > div {
+  border-color: var(--rule-dark);
+}
+
+.surface-dark .fact-list dt,
+.surface-deep .fact-list dt {
+  color: var(--on-dark-soft);
+}
+
+/* ---------- page hero ---------- */
+
+.hero {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: clamp(460px, 74svh, 760px);
+  padding-top: var(--header-h);
+  color: var(--on-dark);
+  background: var(--deep);
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.hero-full {
+  min-height: max(560px, 100svh);
+}
+
+.hero-short {
+  min-height: clamp(380px, 56svh, 560px);
+}
+
+.hero-media {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+
+.hero-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(180deg, rgba(23, 29, 24, 0.55) 0%, rgba(23, 29, 24, 0) 26%),
+    linear-gradient(0deg, rgba(23, 29, 24, 0.82) 0%, rgba(23, 29, 24, 0.35) 45%, rgba(23, 29, 24, 0.08) 75%);
+}
+
+.hero-full::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(90deg, rgba(23, 29, 24, 0.62) 0%, rgba(23, 29, 24, 0.25) 45%, rgba(23, 29, 24, 0) 70%);
+}
+
+.hero-inner {
+  padding-block: clamp(40px, 7vw, 88px) calc(clamp(40px, 7vw, 88px) + var(--curve-h));
+}
+
+.hero-title {
+  max-width: 15ch;
+  font-size: var(--fs-h1);
+}
+
+.hero-full .hero-title {
+  font-size: var(--fs-display);
+  max-width: 12ch;
+}
+
+.hero-lead {
+  max-width: 36rem;
+  margin-top: clamp(1rem, 2vw, 1.5rem);
+  font-size: var(--fs-lead);
+  color: rgba(243, 239, 231, 0.88);
+}
+
+.hero .actions {
+  margin-top: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+/* ---------- in-page navigation ---------- */
+
+.page-nav {
+  position: sticky;
+  top: var(--header-h);
+  z-index: 20;
+  background: rgba(243, 239, 231, 0.96);
+  border-bottom: 1px solid var(--rule);
+  backdrop-filter: blur(8px);
+}
+
+.page-nav ul {
+  display: flex;
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+  list-style: none;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.page-nav ul::-webkit-scrollbar {
+  display: none;
+}
+
+.page-nav a {
+  display: block;
+  padding: 1rem 0;
+  font-size: var(--fs-small);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  text-decoration: none;
+  color: var(--ink-soft);
+  border-bottom: 2px solid transparent;
+  transition:
+    color 0.2s,
+    border-color 0.2s;
+}
+
+.page-nav a:hover {
+  color: var(--ink);
+  border-color: var(--bronze);
+}
+
+/* extra offset for the sticky in-page nav (added to the global scroll-padding) */
+.has-page-nav {
+  scroll-margin-top: 56px;
+}
+
+/* ---------- closing call to action ---------- */
+
+.closing-inner {
+  display: grid;
+  gap: var(--gap);
+  align-items: end;
+  padding: clamp(28px, 4vw, 56px);
+}
+
+@media (min-width: 860px) {
+  .closing-inner {
+    grid-template-columns: 1.4fr 1fr;
+  }
+
+  .closing-inner .actions {
+    justify-content: flex-end;
+  }
+}
+
+.closing h2 {
+  max-width: 18ch;
+}
+
+.closing p {
+  margin-top: 1rem;
+  max-width: 34rem;
+}
+
+/* ---------- forms ---------- */
+
+.field {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.field label {
+  font-size: var(--fs-small);
+  font-weight: 500;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  min-height: 48px;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid rgba(157, 93, 63, 0.35);
+  border-radius: 14px;
+  background: #fbf8f3;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.field textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: 2px solid var(--bronze);
+  outline-offset: 0;
+  border-color: var(--bronze);
+}
+
+.field-hint {
+  font-size: var(--fs-small);
+  color: var(--ink-soft);
+}
+
+/* ------------------------------------------------------------------
+   Themed sections, curves and organic image frames (shared by all pages)
+   ------------------------------------------------------------------ */
+
+.t-section {
+  position: relative;
+  isolation: isolate;
+  padding-block: var(--sec-gap);
+}
+
+.t-section.has-curve {
+  padding-bottom: calc(var(--sec-gap) + var(--curve-h));
+}
+
+.t-cream {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.t-deep {
+  background: var(--deep);
+  color: var(--on-dark);
+}
+
+.curve {
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  height: var(--curve-h);
+  pointer-events: none;
+}
+
+.curve-line {
+  stroke: var(--terracotta);
+  stroke-width: 2;
+}
+
+/* space between blocks inside one themed section */
+.t-block + .t-block {
+  margin-top: clamp(48px, 6vw, 88px);
+}
+
+.framed {
+  position: relative;
+}
+
+/* The gold ring is an outline offset from the photo, so the gap stays even all the way
+   round; the frame's padding reserves that space so ring edges align with the layout. */
+.frame {
+  position: relative;
+  padding: 9px;
+}
+
+.shape {
+  position: relative;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.08);
+  outline: 1px solid var(--gold);
+  outline-offset: 8px;
+}
+
+.shape img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1s var(--ease);
+}
+
+.pebble {
+  border-radius: 47% 53% 44% 56% / 55% 45% 55% 45%;
+}
+
+.pebble-alt {
+  border-radius: 58% 42% 52% 48% / 46% 56% 44% 54%;
+}
+
+.pebble-wide {
+  border-radius: 42% 58% 46% 54% / 58% 46% 54% 42%;
+}
+
+.arch {
+  border-radius: 999px 999px 28px 28px;
+}
+
+.soft {
+  border-radius: 28px;
+}
+
+/* terracotta form behind a framed photograph; insets never pass the frame's sides */
+.blob::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  background: var(--terracotta);
+  opacity: 0.88;
+  border-radius: 52% 48% 60% 40% / 45% 55% 45% 55%;
+}
+
+.blob-br::before {
+  inset: 22% 0 0 22%;
+}
+
+.blob-bl::before {
+  inset: 22% 22% 0 0;
+}
+
+.blob-tr::before {
+  inset: 0 0 22% 22%;
+}
+
+.blob-tl::before {
+  inset: 0 22% 22% 0;
+}
+
+/* rounded deep card with a gold hairline, used inside cream sections */
+.card-deep {
+  border: 1px solid var(--rule-dark);
+  border-radius: 28px;
+  background: var(--deep-2);
+  color: var(--on-dark);
+}
+
+.card-cream {
+  border: 1px solid var(--rule);
+  border-radius: 28px;
+  background: var(--paper-2);
+}
+
+/* section titles with an italic second line, as on the home page */
+.title-split span {
+  display: block;
+  margin-top: 0.2em;
+  font-size: 0.62em;
+  font-style: italic;
+  color: var(--terra-ink);
+}
+
+.surface-deep .title-split span,
+.t-deep .title-split span {
+  color: var(--gold);
+}

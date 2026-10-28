@@ -1,0 +1,212 @@
+/* ---------- intro: text beside two equal arches ---------- */
+.intro {
+  display: grid;
+  gap: var(--gap-lg);
+  align-items: center;
+}
+
+@media (min-width: 960px) {
+  .intro {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.introText {
+  display: grid;
+  gap: 1.25rem;
+  justify-items: start;
+}
+
+.introText :global(.actions) {
+  margin-top: 0.5rem;
+}
+
+.introMedia {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(14px, 2vw, 28px);
+  align-items: start;
+}
+
+/* ---------- menu header: title and plated dishes on one line ---------- */
+.menuHead {
+  display: grid;
+  gap: 1.5rem;
+  align-items: center;
+  margin-bottom: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+@media (min-width: 860px) {
+  .menuHead {
+    grid-template-columns: minmax(0, 1fr) minmax(240px, 420px);
+    gap: var(--gap-lg);
+  }
+}
+
+.menuIntro {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.plates {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(8px, 1.5vw, 20px);
+  width: 100%;
+  max-width: 420px;
+  list-style: none;
+}
+
+.plates img {
+  width: 100%;
+  height: auto;
+}
+
+/* ---------- tabs ---------- */
+.tabBar {
+  position: sticky;
+  top: var(--header-h);
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 2rem;
+  padding-top: 0.75rem;
+  background: var(--deep);
+  border-bottom: 1px solid var(--rule-dark);
+}
+
+.tabList {
+  display: flex;
+  gap: 6px;
+  padding-bottom: 0.75rem;
+}
+
+.tab {
+  min-height: 44px;
+  padding: 0 1.4rem;
+  border: 1px solid var(--rule-dark);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--on-dark);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background-color 0.2s,
+    color 0.2s,
+    border-color 0.2s;
+}
+
+.tab[aria-selected="true"] {
+  background: var(--terracotta);
+  border-color: var(--terracotta);
+  color: var(--deep);
+}
+
+.tab:not([aria-selected="true"]):hover {
+  border-color: var(--gold);
+}
+
+.jump {
+  display: flex;
+  gap: 1.5rem;
+  min-width: 0;
+  max-width: 100%;
+  list-style: none;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.jump::-webkit-scrollbar {
+  display: none;
+}
+
+.jump a {
+  display: block;
+  padding: 0.6rem 0 0.85rem;
+  font-size: var(--fs-small);
+  color: var(--on-dark-soft);
+  white-space: nowrap;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+}
+
+.jump a:hover {
+  color: var(--on-dark);
+  border-color: var(--gold);
+}
+
+/* ---------- menu columns ----------
+   Balanced CSS columns: a category may continue into the next column, but its
+   heading stays with its first dish and no dish is split. */
+.panel {
+  columns: 1;
+  column-gap: var(--gap-lg);
+  padding-top: clamp(1.75rem, 3vw, 2.5rem);
+}
+
+.panel[hidden] {
+  display: none;
+}
+
+@media (min-width: 860px) {
+  .panel {
+    columns: 2;
+  }
+}
+
+.category {
+  padding-bottom: clamp(1.75rem, 3vw, 2.5rem);
+  scroll-margin-top: 112px; /* sticky tab bar, on top of the global header offset */
+}
+
+.category h3 {
+  break-after: avoid;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--terracotta);
+  color: var(--gold);
+}
+
+.category ul {
+  list-style: none;
+}
+
+.dish {
+  break-inside: avoid;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--rule-dark);
+}
+
+.dishHead {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+}
+
+.dishName {
+  font-weight: 500;
+  color: var(--on-dark);
+}
+
+.leader {
+  flex: 1;
+  min-width: 1rem;
+  border-bottom: 1px dotted rgba(212, 175, 119, 0.45);
+  transform: translateY(-0.3em);
+}
+
+.dishPrice {
+  font-weight: 500;
+  color: var(--gold);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.dishText {
+  margin-top: 0.2rem;
+  max-width: 34rem;
+  font-size: var(--fs-small);
+  line-height: 1.5;
+  color: var(--on-dark-soft);
+}

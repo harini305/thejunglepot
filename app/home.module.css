@@ -1,0 +1,618 @@
+/* Home page theme: dark mystic jungle with cream sections, terracotta and gold accents */
+.home {
+  --j-deep: #121f1a;
+  --j-deep-2: #1a2b24;
+  --j-cream: #f5efe6;
+  --j-terra: #c98a6d;
+  --j-terra-ink: #9d5d3f; /* terracotta dark enough for small text on cream */
+  --j-gold: #d4af77;
+  --j-gold-line: rgba(212, 175, 119, 0.45);
+  --j-footer: var(--deep);
+  --j-gap: 32px; /* space between a section's edge and its content */
+  --j-curve: clamp(24px, 3.5vw, 52px);
+  background: var(--j-cream);
+}
+
+/* ---------- section scaffolding ---------- */
+
+.section {
+  position: relative;
+  isolation: isolate;
+  padding-block: var(--j-gap) calc(var(--j-gap) + var(--j-curve));
+}
+
+.cream {
+  background: var(--j-cream);
+  color: var(--j-deep);
+}
+
+.deep {
+  background: var(--j-deep);
+  color: var(--j-cream);
+}
+
+.last {
+  padding-bottom: calc(var(--j-gap) + var(--j-curve));
+}
+
+.curve {
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  height: var(--j-curve);
+  pointer-events: none;
+}
+
+.curveLine {
+  stroke: var(--j-terra);
+  stroke-width: 2;
+}
+
+.title {
+  font-size: var(--fs-h2);
+  font-weight: 500;
+  line-height: 1.04;
+}
+
+.title span {
+  display: block;
+  margin-top: 0.2em;
+  font-size: 0.62em;
+  font-style: italic;
+  color: var(--j-terra-ink);
+}
+
+.deep .title span {
+  color: var(--j-gold);
+}
+
+.lead {
+  font-size: var(--fs-lead);
+  line-height: 1.6;
+  color: #3e4741;
+}
+
+.deep .lead {
+  color: rgba(245, 239, 230, 0.82);
+}
+
+.body {
+  color: #4f5752;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  width: fit-content;
+  padding-bottom: 3px;
+  border-bottom: 1px solid currentColor;
+  font-weight: 500;
+  color: var(--j-terra-ink);
+  text-decoration: none;
+}
+
+.deep .link {
+  color: var(--j-gold);
+}
+
+/* ---------- organic image frames ---------- */
+
+.frame {
+  position: relative;
+  padding: 9px;
+}
+
+.shape {
+  position: relative;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.08);
+  outline: 1px solid var(--j-gold);
+  outline-offset: 8px;
+}
+
+.shape img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1s var(--ease);
+}
+
+.pebble {
+  border-radius: 47% 53% 44% 56% / 55% 45% 55% 45%;
+}
+
+.pebbleAlt {
+  border-radius: 58% 42% 52% 48% / 46% 56% 44% 54%;
+}
+
+.pebbleWide {
+  border-radius: 42% 58% 46% 54% / 58% 46% 54% 42%;
+}
+
+.arch {
+  border-radius: 999px 999px 28px 28px;
+}
+
+/* terracotta forms that sit behind the framed photographs */
+.introMedia,
+.stayMedia,
+.spaMedia,
+.diningMedia {
+  position: relative;
+}
+
+.introMedia::before,
+.stayMedia::before,
+.spaMedia::before,
+.diningMedia::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  background: var(--j-terra);
+}
+
+.introMedia::before {
+  inset: 22% 0 0 22%;
+  border-radius: 52% 48% 60% 40% / 45% 55% 45% 55%;
+}
+
+.stayMedia::before {
+  inset: 0 0 22% 22%;
+  border-radius: 999px 999px 40px 40px;
+  opacity: 0.85;
+}
+
+.spaMedia::before {
+  inset: 0 22% 22% 0;
+  border-radius: 44% 56% 40% 60% / 60% 40% 60% 40%;
+  opacity: 0.9;
+}
+
+.diningMedia::before {
+  inset: 22% 0 0 22%;
+  border-radius: 60% 40% 52% 48% / 48% 56% 44% 52%;
+  opacity: 0.85;
+}
+
+/* ---------- hero ---------- */
+
+.hero {
+  align-items: stretch;
+}
+
+.heroInner {
+  display: grid;
+  gap: clamp(28px, 4vw, 48px);
+  align-content: end;
+  align-items: end;
+  padding-block: var(--j-gap) calc(var(--j-gap) + var(--j-curve));
+}
+
+@media (min-width: 1024px) {
+  .heroInner {
+    grid-template-columns: 7fr 4fr;
+  }
+}
+
+.heroTitle {
+  font-size: clamp(3rem, 1.4rem + 6.4vw, 7.25rem);
+  font-weight: 500;
+  line-height: 0.96;
+  letter-spacing: -0.015em;
+  color: var(--j-cream);
+}
+
+.heroLead {
+  max-width: 34rem;
+  margin-top: clamp(1rem, 2vw, 1.5rem);
+  font-size: var(--fs-lead);
+  color: rgba(245, 239, 230, 0.88);
+}
+
+.heroCopy :global(.actions) {
+  margin-top: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.glassCards {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(220px, 72%);
+  gap: 12px;
+  list-style: none;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.glassCards::-webkit-scrollbar {
+  display: none;
+}
+
+.glassCards > li {
+  scroll-snap-align: start;
+}
+
+@media (min-width: 640px) {
+  .glassCards {
+    grid-auto-columns: minmax(200px, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .glassCards {
+    grid-auto-flow: row;
+    gap: 14px;
+    overflow: visible;
+  }
+}
+
+.glass {
+  display: grid;
+  gap: 0.3rem;
+  height: 100%;
+  padding: 1.1rem 1.4rem 1.2rem;
+  border: 1px solid rgba(212, 175, 119, 0.4);
+  border-radius: 22px;
+  background: rgba(18, 31, 26, 0.42);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  backdrop-filter: blur(14px) saturate(1.2);
+  color: var(--j-cream);
+  text-decoration: none;
+  transition:
+    background-color 0.3s var(--ease),
+    border-color 0.3s var(--ease);
+}
+
+.glass:hover {
+  border-color: var(--j-gold);
+  background: rgba(18, 31, 26, 0.62);
+}
+
+.glassTitle {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.15;
+}
+
+.glassText {
+  font-size: var(--fs-small);
+  color: rgba(245, 239, 230, 0.78);
+}
+
+/* ---------- Lingga Yoga ---------- */
+
+.intro {
+  display: grid;
+  gap: clamp(48px, 7vw, 96px);
+  align-items: center;
+}
+
+@media (min-width: 860px) {
+  .intro {
+    grid-template-columns: 7fr 5fr;
+  }
+}
+
+.introText {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.introText p + p {
+  margin-top: 0;
+}
+
+.introMedia {
+  width: min(100%, 460px);
+  justify-self: center;
+}
+
+@media (min-width: 860px) {
+  .introMedia {
+    justify-self: end;
+  }
+}
+
+.introMedia .shape {
+  aspect-ratio: 4 / 5;
+}
+
+/* ---------- Your home in the forest ---------- */
+
+.stay {
+  display: grid;
+  gap: clamp(48px, 7vw, 96px);
+  align-items: center;
+}
+
+@media (min-width: 960px) {
+  .stay {
+    grid-template-columns: 5fr 6fr;
+  }
+
+}
+
+.stayMedia {
+  width: min(100%, 420px);
+  justify-self: center;
+}
+
+@media (min-width: 960px) {
+  .stayMedia {
+    justify-self: start;
+  }
+}
+
+.stayMedia .shape {
+  aspect-ratio: 4 / 5;
+}
+
+.stayText {
+  display: grid;
+  gap: 1.5rem;
+  justify-items: start;
+}
+
+.facts {
+  width: 100%;
+  margin: 0;
+  border-top: 1px solid var(--j-gold-line);
+}
+
+.facts > div {
+  display: grid;
+  grid-template-columns: minmax(7rem, 36%) 1fr;
+  gap: 1rem;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--j-gold-line);
+}
+
+.facts dt {
+  color: rgba(245, 239, 230, 0.7);
+}
+
+.facts dd {
+  margin: 0;
+  font-weight: 500;
+}
+
+/* ---------- Spa ---------- */
+
+.spa {
+  display: grid;
+  gap: clamp(48px, 7vw, 96px);
+  align-items: center;
+}
+
+@media (min-width: 860px) {
+  .spa {
+    grid-template-columns: 5fr 7fr;
+  }
+}
+
+.spaMedia {
+  width: min(100%, 440px);
+  justify-self: center;
+}
+
+@media (min-width: 860px) {
+  .spaMedia {
+    justify-self: start;
+  }
+}
+
+.spaMedia .shape {
+  aspect-ratio: 1 / 1;
+}
+
+.spaText {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.prices {
+  list-style: none;
+  margin-top: 0.5rem;
+  border-top: 1px solid var(--j-gold-line);
+}
+
+.prices li {
+  border-bottom: 1px solid var(--j-gold-line);
+}
+
+.prices a {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 1rem 0;
+  text-decoration: none;
+}
+
+.priceName {
+  font-family: var(--font-serif);
+  font-size: var(--fs-h3);
+  font-weight: 500;
+  line-height: 1.2;
+  transition: color 0.2s;
+}
+
+.prices a:hover .priceName {
+  color: var(--j-terra-ink);
+}
+
+.priceDots {
+  flex: 1;
+  min-width: 1rem;
+  border-bottom: 1px dotted rgba(157, 93, 63, 0.55);
+  transform: translateY(-0.3em);
+}
+
+.priceMeta {
+  display: inline-flex;
+  gap: 1rem;
+  white-space: nowrap;
+  font-size: var(--fs-small);
+  color: #4f5752;
+}
+
+.priceMeta strong {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--j-terra-ink);
+}
+
+.note {
+  font-size: var(--fs-small);
+  color: #4f5752;
+}
+
+@media (max-width: 479px) {
+  .prices a {
+    flex-wrap: wrap;
+    gap: 0.2rem 0.75rem;
+  }
+
+  .priceName {
+    flex: 1 1 100%;
+  }
+
+  .priceDots {
+    display: none;
+  }
+}
+
+/* ---------- Rituals ---------- */
+
+.ritualsHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.ritualsHead .title {
+  max-width: 14ch;
+}
+
+.rituals {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(230px, 72%);
+  gap: clamp(14px, 2vw, 24px);
+  padding-bottom: 8px;
+  list-style: none;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  scrollbar-color: var(--j-gold-line) transparent;
+}
+
+.rituals > li {
+  scroll-snap-align: start;
+}
+
+@media (min-width: 640px) {
+  .rituals {
+    grid-auto-columns: minmax(230px, 44%);
+  }
+}
+
+@media (min-width: 1024px) {
+  .rituals {
+    grid-auto-flow: row;
+    grid-template-columns: repeat(4, 1fr);
+    overflow: visible;
+  }
+}
+
+.ritual {
+  display: grid;
+  align-content: start;
+  gap: 0.5rem;
+  height: 100%;
+  padding: 12px 12px 26px;
+  border: 1px solid rgba(212, 175, 119, 0.3);
+  border-radius: 999px 999px 26px 26px;
+  background: var(--j-deep-2);
+  text-align: center;
+  text-decoration: none;
+  transition:
+    border-color 0.3s var(--ease),
+    transform 0.4s var(--ease);
+}
+
+.ritual:hover {
+  border-color: var(--j-gold);
+}
+
+.ritual:hover img {
+  transform: scale(1.05);
+}
+
+.ritualImage {
+  aspect-ratio: 3 / 4;
+}
+
+.ritual h3 {
+  margin-top: 0.9rem;
+  font-size: 1.6rem;
+  color: var(--j-cream);
+}
+
+.ritual p {
+  padding-inline: 0.75rem;
+  font-size: var(--fs-small);
+  line-height: 1.5;
+  color: rgba(245, 239, 230, 0.75);
+}
+
+/* ---------- Dining ---------- */
+
+.dining {
+  display: grid;
+  gap: clamp(48px, 7vw, 96px);
+  align-items: center;
+}
+
+.diningMedia {
+  width: min(100%, 560px);
+  justify-self: center;
+}
+
+@media (min-width: 960px) {
+  .dining {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .diningMedia {
+    justify-self: end;
+  }
+}
+
+.diningText {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.diningMedia .shape {
+  aspect-ratio: 16 / 10;
+}
+
+/* ---------- buttons inside the home theme ---------- */
+
+.cream :global(.btn-outline) {
+  color: var(--j-deep);
+}
+
+.cream :global(.btn-outline:hover) {
+  background: var(--j-deep);
+  color: var(--j-cream);
+  border-color: var(--j-deep);
+}

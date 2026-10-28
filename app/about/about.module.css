@@ -1,0 +1,96 @@
+.story {
+  display: grid;
+  gap: var(--gap);
+}
+
+@media (min-width: 960px) {
+  .story {
+    grid-template-columns: 4fr 8fr;
+    gap: var(--gap-lg);
+  }
+
+  .storyTitle {
+    position: sticky;
+    top: calc(var(--header-h) + 40px);
+    align-self: start;
+  }
+}
+
+.storyText {
+  max-width: 40rem;
+}
+
+.storyText p:not(:global(.lead)) {
+  color: var(--ink-soft);
+}
+
+/* Community: two offset images and text */
+.community {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr 1fr;
+}
+
+.communityText {
+  grid-column: 1 / -1;
+  margin-top: var(--gap);
+}
+
+
+
+@media (min-width: 960px) {
+  .community {
+    grid-template-columns: 3.5fr 3.5fr 5fr;
+    gap: var(--gap);
+    align-items: center;
+  }
+
+  .communityText {
+    grid-column: 3;
+    margin-top: 0;
+    padding-left: var(--gap);
+  }
+
+
+}
+
+/* Philosophy: three words set large */
+.pillars {
+  display: grid;
+  list-style: none;
+  border-top: 1px solid var(--terracotta);
+}
+
+.pillars li {
+  display: grid;
+  gap: 0.25rem 2rem;
+  padding: clamp(1.25rem, 2.5vw, 2rem) 0;
+  border-bottom: 1px solid var(--rule);
+  align-items: baseline;
+}
+
+@media (min-width: 700px) {
+  .pillars li {
+    grid-template-columns: 5fr 7fr;
+  }
+}
+
+.pillarWord {
+  font-family: var(--font-serif);
+  font-size: var(--fs-h2);
+  font-weight: 500;
+  line-height: 1.05;
+}
+
+/* Mission */
+.mission {
+  display: grid;
+  gap: var(--gap-lg);
+  align-items: center;
+}
+
+@media (min-width: 960px) {
+  .mission {
+    grid-template-columns: 5fr 7fr;
+  }
+}
