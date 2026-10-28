@@ -2,3 +2,7 @@
 docs
 scripts
 *.md
+
+# local environment files and Vercel CLI link data
+.env*
+.vercel
